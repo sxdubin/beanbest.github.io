@@ -1,6 +1,20 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <script type="text/javascript" src="/js/main.js"></script>
+<script>
+    $('#bdRewardBtn').on('click', function () {
+        $('.bd-dialog').show();
+    });
+
+    $('.bd-close-dialog').on('click', function () {
+        $('.bd-dialog').hide();
+    });
+    $('.bd-payment-way label').on('click', function () {
+        var index = $(this).attr('index');
+        $('#indexss img').hide();
+        $('#index'+index).show();
+    });
+</script>
 
 {% if site.ga.id %}
 <script>
