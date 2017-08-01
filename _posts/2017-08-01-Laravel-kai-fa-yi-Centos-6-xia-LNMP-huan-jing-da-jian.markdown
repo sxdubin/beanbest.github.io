@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Laravel开发一（Centos6下LNMP环境搭建）
-date: 2017-07-31 12:32:24.000000000 +08:00
+date: 2017-08-01 23:00:00.000000000 +08:00
 categories: [Laravel, Linux]
 ---
 
