@@ -23,15 +23,15 @@ categories: [Laravel, Linux]
 
 * 更新编译所依赖的各种库至最新版本。
 
-### 安装软件版本一览
+#### 安装软件版本一览
 
-* nginx 1.13.3
-* php 7.1.7
-* mysql 5.7.19
-* composer 1.4.2
-* redis 4.0.1
-
-### 准备工作
+>
+> * nginx 1.13.3
+> * php 7.1.7
+> * mysql 5.7.19
+> * composer 1.4.2
+> * redis 4.0.1
+>
 
 #### 安全配置
 
@@ -64,73 +64,75 @@ YUM源因为公司有内部源，所以也不做配置，如果你的yum源是�
 
 #### 下载软件包
 
-1. 下载nginx
+1. 下载 `nginx`
 
     [http://nginx.org/download/nginx-1.13.3.tar.gz](http://nginx.org/download/nginx-1.10.2.tar.gz)
 
-2. 下载MySQL
+2. 下载 `MySQL`
 
     [https://cdn.mysql.com/Downloads/MySQL-5.7/mysql-boost-5.7.19.tar.gz](https://cdn.mysql.com/Downloads/MySQL-5.7/mysql-boost-5.7.19.tar.gz)
 
-3. 下载php
+3. 下载 `php`
 
     [http://cn2.php.net/distributions/php-7.1.7.tar.gz](http://cn2.php.net/distributions/php-5.5.38.tar.gz)
 
-4. 下载pcre `支持nginx伪静态`
+4. 下载 `pcre` `支持nginx伪静态`
 
     [http://ftp.exim.llorien.org/pcre/pcre-8.41.tar.gz](http://ftp.exim.llorien.org/pcre/pcre-8.39.tar.gz)
 
-5. 下载openssl `nginx扩展`
+5. 下载 `openssl` `nginx扩展`
 
     [https://www.openssl.org/source/openssl-1.1.0f.tar.gz](https://www.openssl.org/source/openssl-1.1.0f.tar.gz)
 
-6. 下载zlib `nginx扩展`
+6. 下载 `zlib` `nginx扩展`
 
     [http://zlib.net/zlib-1.2.11.tar.gz](http://zlib.net/zlib-1.2.8.tar.gz)
 
-7. 下载cmake `MySQL编译工具`
+7. 下载 `cmake` `MySQL编译工具`
 
     [http://www.cmake.org/files/v3.9/cmake-3.9.0.tar.gz](http://www.cmake.org/files/v3.6/cmake-3.6.2.tar.gz)
 
-8. 下载libmcrypt `php扩展`
+8. 下载 `libmcrypt` `php扩展`
 
     [http://nchc.dl.sourceforge.net/project/mcrypt/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz](http://nchc.dl.sourceforge.net/project/mcrypt/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz)
 
-9. 下载yasm `php扩展`
+9. 下载 `yasm` `php扩展`
 
     [http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz](http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz)
 
-10. t1lib `php扩展`
+10. 下载 `t1lib` `php扩展`
 
     [http://download.openpkg.org/components/cache/t1lib/t1lib-5.1.2.tar.gz](http://download.openpkg.org/components/cache/t1lib/t1lib-5.1.2.tar.gz)
 
-11. 下载gd库安装包
+11. 下载 `gd` 库安装包
 
     [https://github.com/libgd/libgd/releases/download/gd-2.2.4/libgd-2.2.4.tar.gz](https://github.com/libgd/libgd/releases/download/gd-2.2.4/libgd-2.2.4.tar.gz)
 
-12. libvpx `gd库需要`
+12. 下载 `libvpx` `gd库需要`
 
     [https://github.com/webmproject/libvpx/archive/v1.6.1.tar.gz](https://github.com/webmproject/libvpx/archive/v1.6.1.tar.gz)
 
-13. tiff `gd库需要`
+13. 下载 `tiff` `gd库需要`
 
     [http://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz](http://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz)
 
-14. libpng `gd库需要`
+14. 下载 `libpng` `gd库需要`
 
     [https://sourceforge.net/projects/libpng/files/libpng16/1.6.31/libpng-1.6.31.tar.gz](https://sourceforge.net/projects/libpng/files/libpng16/1.6.31/libpng-1.6.31.tar.gz)
 
-15. freetype `gd库需要`
+15. 下载 `freetype` `gd库需要`
 
     [http://ftp.twaren.net/Unix/NonGNU/freetype/freetype-2.8.tar.gz](http://ftp.twaren.net/Unix/NonGNU/freetype/freetype-2.8.tar.gz)
 
-16. jpegsrc `gd库需要`
+16. 下载 `jpegsrc` `gd库需要`
 
     [http://www.ijg.org/files/jpegsrc.v9b.tar.gz](http://www.ijg.org/files/jpegsrc.v9b.tar.gz)
 
-以上软件包上传到/usr/local/src目录
+17. `Redis` `php-redis` 扩展，`php-swoole` 扩展详见下文。
 
-因为`GFW`的缘故，上面的软件包不一定不能通过原地址全部下载，可以根据自己的方法下载后上传到指定目录
+	以上软件包上传到 `/usr/local/src` 目录
+
+	因为 `GFW` 的缘故，上面的软件包不一定不能通过原地址全部下载，可以根据自己的方法下载后上传到指定目录
 
 #### 安装编译工具及库文件（使用yum命令安装）
 
@@ -145,11 +147,9 @@ yum install apr* autoconf automake bison bzip2 bzip2* cloog-ppl compat* cpp curl
     wget htop vim zlib-devel
 ```
 
-### 安装部分
+--------
 
-#### 安装MySQL
-
-##### 安装cmake
+#### 安装cmake
 
 ```
 cd /usr/local/src
@@ -160,9 +160,9 @@ make
 make install
 ```
 
-##### 安装MySQL
+#### 安装MySQL
 
-```
+```bash
 cd /usr/local/src                  #进入src目录
 groupadd mysql                     #添加mysql组
 useradd -r -s /sbin/nologin -g mysql mysql
@@ -175,7 +175,7 @@ tar zxf mysql-boost-5.7.19.tar.gz  #解压
 cd mysql-5.7.19                    #进入mysql源码目录
 ```
 
-```
+```bash
 cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
 -DSYSCONFDIR=/usr/local/mysql/etc \
 -DMYSQL_DATADIR=/data/mysql \
@@ -198,7 +198,8 @@ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
 -DENABLED_LOCAL_INFILE=ON
 
 部分编译参数说明
-```
+
+```txt
 -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \ #安装路径
 -DMYSQL_DATADIR=/usr/local/mysql/data \   #数据文件存放位置
 -DSYSCONFDIR=/etc \                       #my.cnf路径
@@ -218,35 +219,35 @@ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
 那么需要在配置项中指明下载 boost 库。
 ```
 
-```
+```bash
 make         #编译(大约10-20分钟)
 make install #安装
 ```
 
 如果编译出错, 重新编译前要删除编译失败的文件，重新编译时，需要清除旧的对象文件和缓存信息。
 
-```
+```bash
 make clean
 rm -f CMakeCache.txt
 ```
 
 进入MySQL安装目录
 
-```
+```bash
 cd /usr/local/mysql
 ```
 
-```
+```bash
 rm -rf /etc/my.cnf
 ```
 
-```
+```bash
 vim /usr/local/mysql/etc/my.cof
 ```
 
 添加如下内容：
 
-```
+```txt
 [mysqld]
 datadir=/data/mysql
 socket=/tmp/mysql.sock
@@ -285,7 +286,8 @@ default-character-set=utf8
 ```
 
 添加到/etc目录的软连接
-```
+
+```bash
 ln -s /usr/local/mysql/my.cnf /etc/my.cnf
 ```
 
@@ -297,14 +299,14 @@ ln -s /usr/local/mysql/my.cnf /etc/my.cnf
 
 看到下面这一行
 
-```
+```bash
 2017-08-01T09:17:00.595143Z 1 [Note] A temporary password is generated for root@localhost: VHsFrB3jYg.o
 --initialize表示默认生成密码, --initialize-insecure 表示不生成密码, 密码为空。
 ```
 
 把Mysql加入系统启动
 
-```
+```bash
 cp /usr/local/mysql/support-files/mysql.server /etc/rc.d/init.d/mysqld
 chmod 755 /etc/init.d/mysqld      #增加执行权限
 chkconfig mysqld on               #加入开机启动
@@ -312,57 +314,58 @@ chkconfig mysqld on               #加入开机启动
 
 编辑mysqld
 
-```
-vi /etc/rc.d/init.d/mysqld
+```bash
+vim /etc/rc.d/init.d/mysqld
 ```
 
 添加如下内容：
 
-```
+```txt
 basedir=/usr/local/mysql #MySQL程序安装路径
 datadir=/data/mysql #MySQl数据库存放目录
 ```
 
 添加环境变量
 
-```
+```bash
 vim /etc/profile
 ```
 
 把mysql服务加入系统环境变量：在最后添加下面这一行
 
-```
+```txt
 export PATH=$PATH:/usr/local/mysql/bin
 ```
 
 使配置立刻生效
 
-```
+```bash
 source /etc/profile
 ```
 
 下面这两行把myslq的库文件链接到系统默认的位置，这样你在编译类似PHP等软件时可以不用指定mysql的库文件地址。
 
-```
+```bash
 ln -s /usr/local/mysql/lib/mysql /usr/lib/mysql
 ln -s /usr/local/mysql/include/mysql /usr/include/mysql
 ```
 
 创建目录
 
-```
+```bash
 mkdir /var/lib/mysql
 ln -s /tmp/mysql.sock /var/lib/mysql/mysql.sock #添加软链接
 ```
 
 启动mysql
 
-```
+```bash
 service mysqld start
 ```
 
 修改mysql root密码,执行下面命令:
-```
+
+```txt
 mysql_secure_installation #修改Mysql密码，输入之前生成的密VHsFrB3jYg.o回车，根据提示操作。
 
 Press y|Y for Yes, any other key for No: y #是否安装密码安全插件？选择N
@@ -380,14 +383,15 @@ Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 0
 
 如果安装了密码插件，想卸载用以下命令：
 
-```
+```bash
 UNINSTALL PLUGIN validate_password ;
 ```
 
-#### 安装Nginx
+--------
 
-##### 安装pcre
-```
+#### 安装pcre
+
+```bash
 cd /usr/local/src
 mkdir /usr/local/pcre
 tar zxvf pcre-8.41.tar.gz
@@ -397,8 +401,9 @@ make
 make install
 ```
 
-##### 安装openssl
-```
+#### 安装openssl
+
+```bash
 cd /usr/local/src
 mkdir /usr/local/openssl
 tar zxvf openssl-1.1.0f.tar.gz
@@ -407,6 +412,7 @@ cd openssl-1.1.0f
 make
 make install
 ```
+
 添加环境变量
 
 ```bash
@@ -421,12 +427,13 @@ export PATH=$PATH:/usr/local/openssl/bin
 
 刷新环境变量
 
-```
+```txt
 source /etc/profile
 ```
 
-###### 安装zlib
-```
+#### 安装zlib
+
+```bash
 cd /usr/local/src
 mkdir /usr/local/zlib
 tar zxvf zlib-1.2.11.tar.gz
@@ -436,9 +443,9 @@ make
 make install
 ```
 
-##### 安装Nginx
+#### 安装Nginx
 
-```
+```bash
 groupadd nginx
 useradd -r -s /sbin/nologin -g nginx nginx
 cd /usr/local/src
@@ -458,28 +465,28 @@ cd nginx-1.13.3
 
 注意：
 
---with-openssl=/usr/local/src/openssl-1.1.0f
+* --with-openssl=/usr/local/src/openssl-1.1.0f
 
---with-zlib=/usr/local/src/zlib-1.2.11
+* --with-zlib=/usr/local/src/zlib-1.2.11
 
---with-pcre=/usr/local/src/pcre-8.40
+* --with-pcre=/usr/local/src/pcre-8.40
 
 指向的是源码包解压的路径，而不是安装的路径，否则会报错
 
-```
+```bash
 make
 make install
 ```
 
 修改nginx配置文件
 
-```
+```bash
 vim /usr/local/nginx/conf/nginx.conf
 ```
 
 修改内容如下：
 
-```
+```txt
 # For more information on configuration, see:
 #   * Official English Documentation: http://nginx.org/en/docs/
 #   * Official Russian Documentation: http://nginx.org/ru/docs/
@@ -530,13 +537,13 @@ http {
 
 配置自己的域名ngixn目录
 
-```
+```bash
 vim /usr/local/nginx/conf/conf.d/cmdb.xunleioa.com.conf
 ```
 
 配置如下：
 
-```
+```bash
 server {
     listen 80;
 
@@ -572,18 +579,18 @@ server {
 
 启动Nginx
 
-```
+```bash
 /usr/local/nginx/sbin/nginx
 ```
 
 设置nginx开机启动
 
-```
+```bash
 vim /etc/rc.d/init.d/nginx #编辑启动文件添加下面内容
 ```
 
-```
-############################################################
+```txt
+################################################
 #!/bin/sh
 #
 # nginx - this script starts and stops the nginx daemon
@@ -728,10 +735,10 @@ case "$1" in
         echo $"Usage: $0 {start|stop|reload|configtest|status|force-reload|upgrade|restart|reopen_logs}"
         exit 2
 esac
-############################################################
+################################################
 ```
 
-```
+```bash
 chmod 775 /etc/rc.d/init.d/nginx #赋予文件执行权限
 
 chkconfig nginx on #设置开机启动
@@ -743,11 +750,11 @@ chkconfig nginx on #设置开机启动
 
 **如果到这里nginx还有问题，请查看相关目录文件权限，请保证nginx用户可以访问该目录或文件**
 
-#### 安装php
+--------
 
-##### 安装yasm
+#### 安装yasm
 
-```
+```bash
 cd /usr/local/src
 tar zxvf yasm-1.3.0.tar.gz
 cd yasm-1.3.0
@@ -756,9 +763,9 @@ make
 make install
 ```
 
-##### 安装libmcrypt
+#### 安装libmcrypt
 
-```
+```bash
 cd /usr/local/src
 tar zxvf libmcrypt-2.5.8.tar.gz
 cd libmcrypt-2.5.8
@@ -767,9 +774,9 @@ make
 make install
 ```
 
-##### 安装libvpx
+#### 安装libvpx
 
-```
+```bash
 cd /usr/local/src
 tar xvf v1.6.1.tar.gz
 cd libvpx-1.6.1
@@ -778,9 +785,9 @@ make
 make install
 ```
 
-##### 安装tiff
+#### 安装tiff
 
-```
+```bash
 cd /usr/local/src
 tar zxvf tiff-4.0.8.tar.gz
 cd tiff-4.0.8
@@ -789,9 +796,9 @@ make
 make install
 ```
 
-##### 安装libpng
+#### 安装libpng
 
-```
+```bash
 cd /usr/local/src
 tar zxvf libpng-1.6.31.tar.gz
 cd libpng-1.6.31
@@ -800,9 +807,9 @@ make
 make install
 ```
 
-##### 安装freetype
+#### 安装freetype
 
-```
+```bash
 cd /usr/local/src
 tar zxvf freetype-2.8.tar.gz
 cd freetype-2.8
@@ -811,9 +818,9 @@ make
 make install
 ```
 
-##### 安装jpeg
+#### 安装jpeg
 
-```
+```bash
 cd /usr/local/src
 tar zxvf jpegsrc.v9b.tar.gz
 cd jpeg-9b
@@ -822,22 +829,23 @@ make
 make install
 ```
 
-##### 安装libgd
+#### 安装libgd
 
-```
+```bash
 cd /usr/local/src
 tar zxvf libgd-2.2.4.tar.gz #解压
 cd libgd-2.1.1 #进入目录
-
+```
 
 因为这个版本有个bug所以编译前需要修改下代码
 
 ```bash
 vim /usr/local/src/libgd-2.2.4/src/gd_gd2.c
 ```
+
 include头添加如下内容：
 
-```
+```txt
 #include <limits.h>
 ```
 
@@ -855,7 +863,7 @@ make #编译
 make install #安装
 ```
 
-##### 安装t1lib
+#### 安装t1lib
 
 ```bash
 cd /usr/local/src
@@ -866,10 +874,11 @@ make without_doc
 make install
 ```
 
-##### 安装php
+#### 安装php
 
 注意：如果系统是64位，请执行以下两条命令，否则安装php会出错。
-```
+
+```bash
 cp -frp /usr/lib64/libltdl.so* /usr/lib/
 cp -frp /usr/lib64/libXpm.so* /usr/lib/
 ```
@@ -918,7 +927,7 @@ cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/ww
 vim /usr/local/php/etc/php-fpm.conf #编辑
 ```
 
-```
+```txt
 pid = run/php-fpm.pid #取消前面的分号
 ```
 
@@ -931,7 +940,7 @@ vim /usr/local/php/etc/php-fpm.d/www.conf
 
 修改以下内容
 
-```
+```txt
 user = nginx  #设置php-fpm运行账号为nginx
 group = nginx #设置php-fpm运行组为nginx
 ```
@@ -954,7 +963,7 @@ vim /usr/local/php/etc/php.ini #编辑配置文件
 
 修改相关参数如下：
 
-```
+```txt
 #限制函数
 disable_functions = passthru,exec,system,chroot,scandir,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_alter,ini_restore,dl,openlog,syslog,readlink,symlink,popepassthru,stream_socket_server,escapeshellcmd,dll,popen,disk_free_space,checkdnsrr,checkdnsrr,getservbyname,getservbyport,disk_total_space,posix_ctermid,posix_get_last_error,posix_getcwd, posix_getegid,posix_geteuid,posix_getgid, posix_getgrgid,posix_getgrnam,posix_getgroups,posix_getlogin,posix_getpgid,posix_getpgrp,posix_getpid, posix_getppid,posix_getpwnam,posix_getpwuid, posix_getrlimit, posix_getsid,posix_getuid,posix_isatty, posix_kill,posix_mkfifo,posix_setegid,posix_seteuid,posix_setgid, posix_setpgid,posix_setsid,posix_setuid,posix_strerror,posix_times,posix_ttyname,posix_uname
 date.timezone = PRC         #设置时区
@@ -972,9 +981,9 @@ service php-fpm start #启动php-fpm
 
 **此处nginx不用做关于php的配置，php的配置详见nginx配置： `cmdb.xunleioa.com.conf` 的配置**
 
-#### 测试篇
+#### 测试
 
-```
+```bash
 cd /data/www/cmdb/public
 ```
 
@@ -994,3 +1003,231 @@ chmod 700 /data/www/cmdb/public -R #设置目录权限
 ```
 
 在浏览器中输入绑定的域名，会看到phpinfo页面
+
+--------
+
+#### 安装composer
+
+```bash
+cd /usr/local/src
+mkdir composer
+cd composer
+
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+mv composer.phar /usr/local/bin/composer
+```
+
+设置composer为国内源
+
+```bash
+composer config -g repo.packagist composer https://packagist.phpcomposer.com 
+```
+
+--------
+
+#### 安装redis
+
+```bash
+wget http://download.redis.io/releases/redis-4.0.1.tar.gz
+tar -zxvf redis-4.0.1.tar.gz
+cd redis-4.0.1
+make
+make PREFIX=/usr/local/redis install
+
+mkdir /usr/local/redis/etc/
+cp redis.conf /usr/local/redis/etc/
+
+mkdir -p /usr/local/redis/logs
+touch /usr/local/redis/logs/redis.log
+```
+
+修改配置redis配置文件
+
+```bash
+vim /usr/local/redis/etc/redis.conf
+```
+
+修改如下
+
+```txt
+# 修改一下配置
+# redis以守护进程的方式运行
+# no表示不以守护进程的方式运行(会占用一个终端)
+daemonize yes
+
+# 客户端闲置多长时间后断开连接，默认为0关闭此功能
+timeout 300
+
+# 设置redis日志级别，默认级别：notice
+loglevel notice
+
+# 设置日志文件的输出方式,如果以守护进程的方式运行redis 默认:""
+# 并且日志输出设置为stdout,那么日志信息就输出到/dev/null里面去了
+logfile "/usr/local/redis/logs/redis.log"
+
+```
+
+系统自动启动配置
+
+```bash
+vim /etc/rc.d/init.d/redis
+```
+
+添加如下内容：
+
+```bash
+#!/bin/bash
+#chkconfig: 2345 80 90
+# Simple Redis init.d script conceived to work on Linux systems
+# as it does use of the /proc filesystem.
+
+PATH=/usr/local/bin:/sbin:/usr/bin:/bin
+REDISPORT=6379
+EXEC=/usr/local/redis/bin/redis-server
+REDIS_CLI=/usr/local/redis/bin/redis-cli
+
+PIDFILE=/var/run/redis.pid
+CONF="/usr/local/redis/etc/redis.conf"
+
+case "$1" in
+    start)
+        if [ -f $PIDFILE ]
+        then
+                echo "$PIDFILE exists, process is already running or crashed"
+        else
+                echo "Starting Redis server..."
+                $EXEC $CONF
+        fi
+        if [ "$?"="0" ]
+        then
+              echo "Redis is running..."
+        fi
+        ;;
+    stop)
+        if [ ! -f $PIDFILE ]
+        then
+                echo "$PIDFILE does not exist, process is not running"
+        else
+                PID=$(cat $PIDFILE)
+                echo "Stopping ..."
+                $REDIS_CLI -p $REDISPORT SHUTDOWN
+                while [ -x ${PIDFILE} ]
+               do
+                    echo "Waiting for Redis to shutdown ..."
+                    sleep 1
+                done
+                echo "Redis stopped"
+        fi
+        ;;
+   restart|force-reload)
+        ${0} stop
+        ${0} start
+        ;;
+  *)
+    echo "Usage: /etc/init.d/redis {start|stop|restart|force-reload}" >&2
+        exit 1
+esac
+```
+
+给脚本增加运行权限
+
+```bash
+chmod 755 /etc/rc.d/init.d/redis
+```
+
+查看服务列表
+
+```bash
+chkconfig --list
+chkconfig --add redis
+chkconfig --level 2345 redis on
+```
+
+Redis 启动、停止测试
+
+```bash
+service redis start   #或者 /etc/init.d/redis start
+service redis stop   #或者 /etc/init.d/redis stop
+```
+
+# 查看redis进程
+
+```bash
+ps -el|grep redis
+```
+
+调整下内存分配使用方式并使其生效
+
+* #此参数可用的值为0,1,2
+* #0表示当用户空间请求更多的内存时，内核尝试估算出可用的内存
+* #1表示内核允许超量使用内存直到内存用完为止
+* #2表示整个内存地址空间不能超过swap+(vm.overcommit_ratio)%的RAM值
+
+```bash
+echo "vm.overcommit_memory=1">>/etc/sysctl.conf
+sysctl -p
+```
+
+--------
+
+#### php-redis 扩展安装
+
+```bash
+cd /usr/local/src
+wget http://pecl.php.net/get/redis-3.1.3.tgz
+tar zxf redis-3.1.3.tgz
+cd redis-3.1.3
+phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+make
+make install
+```
+
+#### php-swoole 扩展安装
+
+```bash
+cd /usr/local/src
+wget https://github.com/swoole/swoole-src/archive/v1.9.17.tar.gz
+tar xvf v1.9.17.tar.gz
+swoole-src-1.9.17
+phpize
+./configure
+make
+make install
+```
+
+`php.ini`注册安装的扩展
+
+```bash
+vim /usr/local/php/etc/php.ini
+```
+
+在文件末尾添加如下内容：
+
+```txt
+extension = redis.so
+extension = swoole.so
+```
+
+本文在整个过程中可能有地方没有设置各个软件的环境变量，特在这里补充一下,具体配置如下：
+
+```bash
+vim /etc/profile
+```
+
+最后一行添加如下内容
+
+```bash
+export PATH=$PATH:/usr/local/openssl/bin:/usr/local/mysql/bin:/usr/local/nginx/sbin:/usr/local/php/bin:/usr/local/redis/bin:/usr/local/bin
+```
+
+刷新全局生效：
+
+```bash
+source /etc/profile
+```
+
+基本的配置就完成了，这边在强调下，这个过程中如果有问题，请查看打出生成的日志，以及请查看相关目录文件权限。
