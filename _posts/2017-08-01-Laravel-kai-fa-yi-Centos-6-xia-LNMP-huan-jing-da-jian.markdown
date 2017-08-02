@@ -297,14 +297,14 @@ ln -s /usr/local/mysql/my.cnf /etc/my.cnf
 ./bin/mysqld --user=mysql --initialize --basedir=/usr/local/mysql --datadir=/data/mysql
 ```
 
-看到下面这一行
+看到下面这一行，里面有生成的 `mysql密码` 请先记录下来
 
 ```bash
-2017-08-01T09:17:00.595143Z 1 [Note] A temporary password is generated for root@localhost: VHsFrB3jYg.o
+A temporary password is generated for root@localhost: VHsFrB3jYg.o
 --initialize表示默认生成密码, --initialize-insecure 表示不生成密码, 密码为空。
 ```
 
-把Mysql加入系统启动
+把mysql加入系统启动
 
 ```bash
 cp /usr/local/mysql/support-files/mysql.server /etc/rc.d/init.d/mysqld
@@ -522,7 +522,7 @@ http {
 
     #keepalive_timeout  0;
     keepalive_timeout  300;
-	client_max_body_size 10000m;
+    client_max_body_size 10000m;
 
     #gzip  on;
 
@@ -553,7 +553,7 @@ server {
     server_name cmdb.xunleioa.com;
 
     location / {
-            try_files $uri $uri/ /index.php?$query_string;
+        try_files $uri $uri/ /index.php?$query_string;
     }
 
     error_page 500 502 503 504 /50x.html;
@@ -562,13 +562,12 @@ server {
     }
 
     location ~ .php$ {
-    	fastcgi_read_timeout 600;
-    	fastcgi_pass 127.0.0.1:9000;
-    	fastcgi_index index.php;
-    	fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    	include fastcgi_params;
+        fastcgi_read_timeout 600;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
     }
-
 
     location ~ /.ht {
         deny all;
@@ -1231,3 +1230,4 @@ source /etc/profile
 ```
 
 基本的配置就完成了，这边在强调下，这个过程中如果有问题，请查看打出生成的日志，以及请查看相关目录文件权限。
+
