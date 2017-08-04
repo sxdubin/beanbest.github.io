@@ -288,7 +288,7 @@ default-character-set=utf8
 添加到/etc目录的软连接
 
 ```bash
-ln -s /usr/local/mysql/my.cnf /etc/my.cnf
+ln -s /usr/local/mysql/etc/my.cnf /etc/my.cnf
 ```
 
 生成mysql系统数据库
