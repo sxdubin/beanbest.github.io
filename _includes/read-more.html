@@ -1,32 +1,4 @@
 <section class="read-more">
-	<div class="bd-reward-stl"><p class="bd-pay-info">您的支持是对我最大的鼓励！</p>
-	    <button id="bdRewardBtn"><span>赏</span></button>
-	</div>
-	
-	<div class="bd-dialog" style="display: none">
-	    <div class="bd-dialog-bg"></div>
-	    <div class="bd-dialog-content bd-dialog-pc "><i class="bd-close-dialog">×</i><h5>打赏支付方式：</h5>
-	        <div class="bd-payment-way">
-	            <label index="2" for="alipay"><input type="radio" id="alipay" class="reward-radio" value="1" checked="checked"  name="reward-way">支付宝</label>
-	            <label index="3" for="wechat"><input type="radio" id="wechat" class="reward-radio" value="2" name="reward-way">微信支付</label>
-	        </div>
-	        <div class="bd-payment-img">
-	            <div class="qrcode-img" id="qrCode_0">
-	                <div class="qrcode-border box-size" style="border-radius: 26.56px; width: 210px; height: 210px; padding: 16px; margin-top: 24.33px; border: 8px solid rgb(225, 6, 2);">
-	                    <div id="indexss" style="direction:ltr;border: 0; width:164px; border-collapse: collapse;background-color:#fff;margin:0 auto;" align="center">
-	                        <img id="index2" src="/assets/images/zfb.png"  width="100%" />
-	                        <img id="index3" src="/assets/images/wx.png" style="display: none" width="100%" />
-	                    </div>
-	                </div>
-	                <p class="qrcode-tip" style="width: 42.67px;">打赏</p>
-	            </div>
-	            <div class="qrcode-img" id="qrCode_2">
-	                <div class="qrcode-border box-size" style="border-radius: 26.56px; width: 210px; height: 210px; padding: 16px; margin-top: 24.33px; border: 8px solid rgb(60, 175, 54);">
-	                <p class="qrcode-tip" style="width: 42.67px;">打赏</p></div>
-	        </div>
-	    </div>
-	</div>
-
    {% if page.next %}
    {% assign current = page.next %}
    <div class="read-more-item">

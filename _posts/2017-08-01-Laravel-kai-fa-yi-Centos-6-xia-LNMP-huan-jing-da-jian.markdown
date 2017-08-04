@@ -1041,6 +1041,8 @@ cp redis.conf /usr/local/redis/etc/
 
 mkdir -p /usr/local/redis/logs
 touch /usr/local/redis/logs/redis.log
+
+mkdir -p /var/run/redis
 ```
 
 修改配置redis配置文件
@@ -1056,6 +1058,8 @@ vim /usr/local/redis/etc/redis.conf
 # redis以守护进程的方式运行
 # no表示不以守护进程的方式运行(会占用一个终端)
 daemonize yes
+
+pidfile="/var/run/redis/redis.pid"
 
 # 客户端闲置多长时间后断开连接，默认为0关闭此功能
 timeout 300
@@ -1078,57 +1082,7 @@ vim /etc/rc.d/init.d/redis
 添加如下内容：
 
 ```bash
-#!/bin/bash
-#chkconfig: 2345 80 90
-# Simple Redis init.d script conceived to work on Linux systems
-# as it does use of the /proc filesystem.
-
-PATH=/usr/local/bin:/sbin:/usr/bin:/bin
-REDISPORT=6379
-EXEC=/usr/local/redis/bin/redis-server
-REDIS_CLI=/usr/local/redis/bin/redis-cli
-
-PIDFILE=/var/run/redis.pid
-CONF="/usr/local/redis/etc/redis.conf"
-
-case "$1" in
-    start)
-        if [ -f $PIDFILE ]
-        then
-                echo "$PIDFILE exists, process is already running or crashed"
-        else
-                echo "Starting Redis server..."
-                $EXEC $CONF
-        fi
-        if [ "$?"="0" ]
-        then
-              echo "Redis is running..."
-        fi
-        ;;
-    stop)
-        if [ ! -f $PIDFILE ]
-        then
-                echo "$PIDFILE does not exist, process is not running"
-        else
-                PID=$(cat $PIDFILE)
-                echo "Stopping ..."
-                $REDIS_CLI -p $REDISPORT SHUTDOWN
-                while [ -x ${PIDFILE} ]
-               do
-                    echo "Waiting for Redis to shutdown ..."
-                    sleep 1
-                done
-                echo "Redis stopped"
-        fi
-        ;;
-   restart|force-reload)
-        ${0} stop
-        ${0} start
-        ;;
-  *)
-    echo "Usage: /etc/init.d/redis {start|stop|restart|force-reload}" >&2
-        exit 1
-esac
+#!/bin/sh## redis        init file for starting up the redis daemon## chkconfig:   - 20 80# description: Starts and stops the redis daemon.# Source function library.. /etc/rc.d/init.d/functionsname="redis-server"exec="/usr/local/redis/bin/$name"pidfile="/var/run/redis/redis.pid"REDIS_CONFIG="/usr/local/redis/etc/redis.conf"REDIS_USER="root"[ -e /etc/sysconfig/redis ] && . /etc/sysconfig/redislockfile=/var/lock/subsys/redisstart() {    [ -f $REDIS_CONFIG ] || exit 6    [ -x $exec ] || exit 5    echo -n $"Starting $name: "    daemon --user ${REDIS_USER-redis} "$exec $REDIS_CONFIG"    retval=$?    echo    [ $retval -eq 0 ] && touch $lockfile    return $retval}stop() {    echo -n $"Stopping $name: "    killproc -p $pidfile $name    retval=$?    echo    [ $retval -eq 0 ] && rm -f $lockfile    return $retval}restart() {    stop    start}reload() {    false}rh_status() {    status -p $pidfile $name}rh_status_q() {    rh_status >/dev/null 2>&1}case "$1" in    start)        rh_status_q && exit 0        $1        ;;    stop)        rh_status_q || exit 0        $1        ;;    restart)        $1        ;;    reload)        rh_status_q || exit 7        $1        ;;    force-reload)        force_reload        ;;    status)        rh_status        ;;    condrestart|try-restart)        rh_status_q || exit 0        restart        ;;    *)        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart}"        exit 2esacexit $?
 ```
 
 给脚本增加运行权限
