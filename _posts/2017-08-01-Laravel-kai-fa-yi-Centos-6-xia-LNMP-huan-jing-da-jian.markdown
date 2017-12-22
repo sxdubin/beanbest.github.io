@@ -26,11 +26,11 @@ categories: [Laravel, Linux]
 #### 安装软件版本一览
 
 >
-> * nginx 1.13.3
-> * php 7.1.7
-> * mysql 5.7.19
-> * composer 1.4.2
-> * redis 4.0.1
+> * nginx 1.13.7
+> * php 7.2.0
+> * mysql 5.7.20
+> * composer 1.5.6
+> * redis 4.0.6
 >
 
 #### 安全配置
@@ -44,6 +44,10 @@ chattr -i /etc/passwd
 chattr -i /etc/group
 chattr -i /etc/shadow
 chattr -i /etc/gshadow
+chattr -i /etc/passwd-
+chattr -i /etc/group-
+chattr -i /etc/shadow-
+chattr -i /etc/gshadow-
 ```
 
 防火墙策略这边按照业务去设定就好，这边文档不做配置说明。
@@ -66,31 +70,31 @@ YUM源因为公司有内部源，所以也不做配置，如果你的yum源是�
 
 1. 下载 `nginx`
 
-    [http://nginx.org/download/nginx-1.13.3.tar.gz](http://nginx.org/download/nginx-1.10.2.tar.gz)
+    [http://nginx.org/download/nginx-1.13.7.tar.gz](http://nginx.org/download/nginx-1.13.7.tar.gz)
 
 2. 下载 `MySQL`
 
-    [https://cdn.mysql.com/Downloads/MySQL-5.7/mysql-boost-5.7.19.tar.gz](https://cdn.mysql.com/Downloads/MySQL-5.7/mysql-boost-5.7.19.tar.gz)
+    [https://cdn.mysql.com/Downloads/MySQL-5.7/mysql-boost-5.7.20.tar.gz](https://cdn.mysql.com/Downloads/MySQL-5.7/mysql-boost-5.7.20.tar.gz)
 
 3. 下载 `php`
 
-    [http://cn2.php.net/distributions/php-7.1.7.tar.gz](http://cn2.php.net/distributions/php-5.5.38.tar.gz)
+    [http://cn2.php.net/distributions/php-7.2.0.tar.gz](http://cn2.php.net/distributions/php-7.2.0.tar.gz)
 
 4. 下载 `pcre` `支持nginx伪静态`
 
-    [http://ftp.exim.llorien.org/pcre/pcre-8.41.tar.gz](http://ftp.exim.llorien.org/pcre/pcre-8.39.tar.gz)
+    [http://ftp.exim.llorien.org/pcre/pcre-8.41.tar.gz](http://ftp.exim.llorien.org/pcre/pcre-8.41.tar.gz)
 
 5. 下载 `openssl` `nginx扩展`
 
-    [https://www.openssl.org/source/openssl-1.1.0f.tar.gz](https://www.openssl.org/source/openssl-1.1.0f.tar.gz)
+    [https://www.openssl.org/source/openssl-1.1.0g.tar.gz](https://www.openssl.org/source/openssl-1.1.0g.tar.gz)
 
 6. 下载 `zlib` `nginx扩展`
 
-    [http://zlib.net/zlib-1.2.11.tar.gz](http://zlib.net/zlib-1.2.8.tar.gz)
+    [http://zlib.net/zlib-1.2.11.tar.gz](http://zlib.net/zlib-1.2.11.tar.gz)
 
 7. 下载 `cmake` `MySQL编译工具`
 
-    [http://www.cmake.org/files/v3.9/cmake-3.9.0.tar.gz](http://www.cmake.org/files/v3.6/cmake-3.6.2.tar.gz)
+    [http://www.cmake.org/files/v3.10/cmake-3.10.1.tar.gz](http://www.cmake.org/files/v3.10/cmake-3.10.1.tar.gz)
 
 8. 下载 `libmcrypt` `php扩展`
 
@@ -106,7 +110,7 @@ YUM源因为公司有内部源，所以也不做配置，如果你的yum源是�
 
 11. 下载 `gd` 库安装包
 
-    [https://github.com/libgd/libgd/releases/download/gd-2.2.4/libgd-2.2.4.tar.gz](https://github.com/libgd/libgd/releases/download/gd-2.2.4/libgd-2.2.4.tar.gz)
+    [https://github.com/libgd/libgd/releases/download/gd-2.2.5/libgd-2.2.5.tar.gz](https://github.com/libgd/libgd/releases/download/gd-2.2.5/libgd-2.2.5.tar.gz)
 
 12. 下载 `libvpx` `gd库需要`
 
@@ -114,15 +118,15 @@ YUM源因为公司有内部源，所以也不做配置，如果你的yum源是�
 
 13. 下载 `tiff` `gd库需要`
 
-    [http://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz](http://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz)
+    [http://download.osgeo.org/libtiff/tiff-4.0.9.tar.gz](http://download.osgeo.org/libtiff/tiff-4.0.9.tar.gz)
 
 14. 下载 `libpng` `gd库需要`
 
-    [https://sourceforge.net/projects/libpng/files/libpng16/1.6.31/libpng-1.6.31.tar.gz](https://sourceforge.net/projects/libpng/files/libpng16/1.6.31/libpng-1.6.31.tar.gz)
+    [https://sourceforge.net/projects/libpng/files/libpng16/1.6.34/libpng-1.6.34.tar.gz](https://sourceforge.net/projects/libpng/files/libpng16/1.6.34/libpng-1.6.34.tar.gz)
 
 15. 下载 `freetype` `gd库需要`
 
-    [http://ftp.twaren.net/Unix/NonGNU/freetype/freetype-2.8.tar.gz](http://ftp.twaren.net/Unix/NonGNU/freetype/freetype-2.8.tar.gz)
+    [http://ftp.twaren.net/Unix/NonGNU/freetype/freetype-2.8.1.tar.gz](http://ftp.twaren.net/Unix/NonGNU/freetype/freetype-2.8.1.tar.gz)
 
 16. 下载 `jpegsrc` `gd库需要`
 
@@ -242,7 +246,8 @@ rm -rf /etc/my.cnf
 ```
 
 ```bash
-vim /usr/local/mysql/etc/my.cof
+mkdir /usr/local/mysql/etc
+vim /usr/local/mysql/etc/my.cnf
 ```
 
 添加如下内容：
@@ -1030,9 +1035,9 @@ composer config -g repo.packagist composer https://packagist.phpcomposer.com
 #### 安装redis
 
 ```bash
-wget http://download.redis.io/releases/redis-4.0.1.tar.gz
-tar -zxvf redis-4.0.1.tar.gz
-cd redis-4.0.1
+wget http://download.redis.io/releases/redis-4.0.3.tar.gz
+tar -zxvf redis-4.0.3.tar.gz
+cd redis-4.0.3
 make
 make PREFIX=/usr/local/redis install
 
